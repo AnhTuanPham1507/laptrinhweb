@@ -9,6 +9,7 @@ class OwnerMember extends Model
 {
     use HasFactory;
     protected $table = "owner_member";
+    public $timestamps = false;
     protected $fillable = ['name', 'birthDay', 'gender', 'relationship', 'owner_id'];
     public function Owner()
     {

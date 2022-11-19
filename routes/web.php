@@ -13,5 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [App\Http\Controllers\ManagerController::class, 'index']);
+Route::get('/ownermember',['as'=>'ownermember', 'uses'=>'OwnerMemberController@index']);
+Route::post('/ownermember/create', ['as'=>'create_ownermember', 'uses'=>'OwnerMemberController@create']);
 
