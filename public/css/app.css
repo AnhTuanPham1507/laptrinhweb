@@ -266,3 +266,19 @@ table.table .avatar {
 .modal form label {
     font-weight: normal;
 }
+
+#searchTerm{
+    width:200px;
+}
+.search-bar{
+    display: flex;
+}
+.row-header{
+    display: flex;
+}
+
+.my-icon{
+    cursor: pointer;
+    float: right;
+}
+
