@@ -8,13 +8,12 @@ use App\Enums\Gender;
 use App\Enums\Relationship;
 use App\Models\Owner;
 use Illuminate\Validation\Rule;
-use Illuminate\Support\Facades\DB;
 
 class OwnerMemberController extends Controller
 {
     public function index()
     {
-        $ownerMembers = OwnerMember::paginate(5);
+        $ownerMembers = OwnerMember::orderBy('id', 'DESC')->paginate(5);
         $owners = Owner::all();
         $genders = Gender::getValues();
         $relationships = Relationship::getValues();
@@ -33,14 +32,14 @@ class OwnerMemberController extends Controller
         ], [
             'name.required' => 'name is required',
         ]);
-        // $this->validate($request, [
-        //     'birthday' => ['required', 'date_format:yyyy-mm-dd']
-        // ],[
-        //     'birthday.required' => 'birthday is required',
-        //     'birthday.date_format' => 'wrong format date (yyyy-mm-dd) for birthday',
-        // ]);
-        $this->validate($request, ['gender' =>  Rule::in(Gender::getValues())]);
-        $this->validate($request, ['relationship' => Rule::in(Relationship::getValues())]);
+        $this->validate($request, [
+            'birthday' => ['required', 'date_format:Y-m-d']
+        ],[
+            'birthday.required' => 'birthday is required',
+            'birthday.date_format' => 'wrong format date (yyyy-mm-dd) for birthday',
+        ]);
+        $this->validate($request, ['gender' =>  ['required', Rule::in(Gender::getValues())]]);
+        $this->validate($request, ['relationship' =>['required',Rule::in(Relationship::getValues())]]);
         $this->validate($request, ['owner' => [
             'required',
             Rule::in($owners->map(function ($o) {
@@ -66,12 +65,12 @@ class OwnerMemberController extends Controller
         $this->validate($request, [
             'name' => 'nullable|string|max:50'
         ]);
-        // $this->validate($request, [
-        //     'birthday' => ['required', 'date_format:yyyy-mm-dd']
-        // ],[
-        //     'birthday.required' => 'birthday is required',
-        //     'birthday.date_format' => 'wrong format date (yyyy-mm-dd) for birthday',
-        // ]);
+        $this->validate($request, [
+            'birthday' => ['required', 'date_format:Y-m-d']
+        ],[
+            'birthday.required' => 'birthday is required',
+            'birthday.date_format' => 'wrong format date (yyyy-mm-dd) for birthday',
+        ]);
         $this->validate($request, ['gender' =>  ['nullable', Rule::in(Gender::getValues())]]);
         $this->validate($request, ['relationship' => ['nullable', Rule::in(Relationship::getValues())]]);
         $this->validate($request, [
@@ -88,7 +87,7 @@ class OwnerMemberController extends Controller
             'birthday' => $request->birthday,
             'gender' => $request->gender,
             'relationship' => $request->relationship,
-            'owner_id' => $request->owner,
+            'owner_id' => $request->owner,  
         ]);
         return redirect()->route('ownermember');
     }

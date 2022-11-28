@@ -54,7 +54,9 @@
                     </td>
                     <td>{{$o->relationship}} of {{$o->Owner->name}}</td>
                     <td>
-                        <a onclick="setUpdatingOwnerMember('{{$o->id}}','{{$o->name}}','{{$o->birthday}}','{{$o->gender}}','{{$o->relationship}}','{{$o->owner_id}}')" href="#editEmployeeModal" class="edit" data-toggle="modal">
+                        <a 
+                            onclick="setUpdatingOwnerMember('{{$o->id}}','{{$o->name}}','{{$o->birthday}}','{{$o->gender}}','{{$o->relationship}}','{{$o->owner_id}}')" href="#editEmployeeModal" class="edit" data-toggle="modal"
+                        >
                             <i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i>
                         </a>
                         <a onclick="setDeletingOwnerMember('{{$o->id}}')" href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
@@ -65,7 +67,9 @@
             </tbody>
         </table>
         <div class="clearfix">
-            <div class="hint-text" style="float:right">Showing <b>{{$ownerMembers->count()}}</b> out of <b>{{$ownerMembers->total()}}</b> entries</div>
+            <div class="hint-text" style="float:right">
+                Showing <b>{{$ownerMembers->count()}}</b> out of <b>{{$ownerMembers->total()}}</b> entries
+            </div>
         </div>
         {{$ownerMembers->links()}}
 
@@ -77,7 +81,7 @@
 <div id="addEmployeeModal" class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form id="updatingForm" method="POST" action="{{route('create_ownermember')}}">
+            <form id="creatingForm" method="POST" action="{{route('create_ownermember')}}">
                 {{csrf_field()}}
                 <div class="modal-header">
                     <h4 class="modal-title">Add Owner Member</h4>
@@ -166,11 +170,11 @@
 
                     <div class="form-group">
                         <label>Name</label>
-                        <input id="updatingName" name="name" type="text" class="form-control" required>
+                        <input id="updatingName" name="name" type="text" class="form-control">
                     </div>
                     <div class="form-group">
                         <label>Birthday</label>
-                        <input id="updatingBirthday" name="birthday" type="date" class="form-control" max="<?= date('Y-m-d'); ?>" required>
+                        <input id="updatingBirthday" name="birthday" type="date" class="form-control" max="<?= date('Y-m-d'); ?>">
                     </div>
                     <div class="form-group">
                         <label>Gender</label>

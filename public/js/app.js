@@ -35,12 +35,3 @@ function setDeletingOwnerMember(id) {
 	document.getElementById("deletingId").value = id
 }
 
-
-function openFilter() {
-	document.getElementsByClassName("sidebar")[0].classList.add("active")
-}
-
-function closeFilter() {
-	if (document.getElementsByClassName("sidebar")[0].classList.contains("active"))
-		document.getElementsByClassName("sidebar")[0].classList.remove("active")
-}
