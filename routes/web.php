@@ -19,4 +19,9 @@ Route::get('/ownermember/search',['as'=>'search_ownermember', 'uses'=>'OwnerMemb
 Route::post('/ownermember/create', ['as'=>'create_ownermember', 'uses'=>'OwnerMemberController@create']);
 Route::post('/ownermember/update', ['as'=>'update_ownermember', 'uses'=>'OwnerMemberController@update']);
 Route::post('/ownermember/delete', ['as'=>'delete_ownermember', 'uses'=>'OwnerMemberController@delete']);
-
+Route::post('/ChiPhi/create', ['as'=>'create_ChiPhi', 'uses'=>'ChiPhi@create']);
+Route::post('/ChiPhi/update', ['as'=>'update_ChiPhi', 'uses'=>'ChiPhi@update']);
+Route::post('/ChiPhi/delete', ['as'=>'delete_ChiPhi', 'uses'=>'ChiPhi@delete']);
+Route::get('/', 'TaskController@index')->name('index');
+Route::post('/task', 'TaskController@store')->name('store.task');
+Route::delete('/task/{task}', 'TaskController@delete')->name('delete.task');
