@@ -13,6 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
+        Schema::create('confirm_register', function (Blueprint $table) {
+            $table->id();
+            $table->timestamps();
+            $table->string('token')->unique();
+            $table->integer('user_id');
+        });
     }
 
     /**
@@ -22,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('confirm_register');
     }
 };

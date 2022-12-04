@@ -18,6 +18,8 @@ class RouteServiceProvider extends ServiceProvider
      * @var string
      */
     public const HOME = '/home';
+    public const OWNER_MEMBER = './ownermember';
+    public const SEND_MAIL = './sendmail';
     protected $namespace = 'App\\Http\\Controllers';
 
     /**
