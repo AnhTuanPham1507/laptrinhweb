@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Property extends Model
 {
     use HasFactory;
+    public $timestamps = false;
     protected $table = "property";
     protected $fillable = ['property_number', 'type', 'floor_number', 'owner_id'];
     public function Owner()

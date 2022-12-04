@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Owner extends Model
 {
     use HasFactory;
+    public $timestamps = false;
     protected $table = "owner";
     protected $fillable = ['name', 'email', 'phone', 'contrySide','birthDay', 'gender'];
     
