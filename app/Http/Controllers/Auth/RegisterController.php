@@ -62,7 +62,7 @@ class RegisterController extends Controller
 
     private function randomStr($length)
     {
-        $randomStr = 'fsalkjfhj1324jL@IHLJLKNC<MNAOiahlkdfnalLKSANLFKNFSM,DAFN@bjdASMDNASMN12321#!^*#^!*^$*)%*)%^*.><???<DWD';
+        $randomStr = 'fsalkjfhj1324jL@IHLJLKNC<MNAOiahlkdfnalLKSANLFKNFSM,DAFN@bjdASMDNASMN12321#!^*#^!*^$*)%*)%^*.><???<DWDdsakfkashgjsakgjdaskjhgdj';
         return substr(
             str_shuffle($randomStr),
             0,
@@ -79,7 +79,7 @@ class RegisterController extends Controller
     public function sendMailToConfirmRegister($token, $user_id)
     {
         $data = array('name' => "Phạm Anh Tuấn", "token" => $token, "user_id" => $user_id);
-        Mail::send('mail', $data, function ($message) {
+        Mail::send('mail2', $data, function ($message) {
             $message->to('1851050171tuan@ou.edu.vn', 'Phạm Anh Tuấn')->subject('Confirm Register User');
             $message->from('phamanhtuan9a531@gmail.com', 'Thông báo');
         });

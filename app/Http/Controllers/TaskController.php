@@ -12,7 +12,7 @@ class TaskController extends Controller
         {
             $tasks = Task::all();
     
-            return view('index', compact($tasks));
+            return view('task', compact($tasks));
         }
     
         public function store(Request $request)

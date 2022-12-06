@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Fee;
+use App\Models\Owner;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -21,8 +23,17 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('home');
+        if($request->has("month"))
+        {
+            $fees = Fee::with("Property")->where('month',$request->get("month"))->get();
+        }
+        else
+        {
+            $month = date("m");
+            $fees = Fee::with("Property")->where('month',$month)->get();
+        }
+        return view('home',compact("fees"));
     }
 }

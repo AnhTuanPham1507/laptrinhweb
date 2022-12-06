@@ -26,10 +26,9 @@ Route::get('/user/deny', ['as'=>'deny_user', 'uses'=>'Auth\ConfirmRegisterContro
 
 Auth::routes();
 
-
 Route::post('/ChiPhi/create', ['as'=>'create_ChiPhi', 'uses'=>'ChiPhi@create']);
 Route::post('/ChiPhi/update', ['as'=>'update_ChiPhi', 'uses'=>'ChiPhi@update']);
 Route::post('/ChiPhi/delete', ['as'=>'delete_ChiPhi', 'uses'=>'ChiPhi@delete']);
-Route::get('/', 'TaskController@index')->name('index');
+Route::get('/task', 'TaskController@index')->name('index');
 Route::post('/task', 'TaskController@store')->name('store.task');
 Route::delete('/task/{task}', 'TaskController@delete')->name('delete.task');

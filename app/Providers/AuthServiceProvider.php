@@ -6,6 +6,7 @@ namespace App\Providers;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
 use App\Enums\UserRole;
+use App\Enums\UserStatus;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -27,16 +28,8 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        Gate::before(function ($user, $ability) {
-            if ($user->role == UserRole::getValue("MANAGER")) {
-                return true;
-            } else {
-                return false;
-            }
-        });
-
         Gate::define('authorization', function ($user) {
-            return $user->role == UserRole::getValue("MANAGER");
+            return $user->role == UserRole::getValue("MANAGER") && $user->status == UserStatus::getValue("ACTIVE");
         });
     }
 }
