@@ -23,7 +23,17 @@ Route::post('/ownermember/delete', ['as'=>'delete_ownermember', 'uses'=>'OwnerMe
 
 Route::get('/user/confirm', ['as'=>'confirm_user', 'uses'=>'Auth\ConfirmRegisterController@SetActiveForUser']);
 Route::get('/user/deny', ['as'=>'deny_user', 'uses'=>'Auth\ConfirmRegisterController@DenyUser']);
-
+Route::get('/user/confirm', ['as'=>'confirm_user', 'uses'=>'Auth\ConfirmRegisterController@SetActiveForUser'])->middleware(['auth'])->middleware('can:authorization');
+Route::get('/user/deny', ['as'=>'deny_user', 'uses'=>'Auth\ConfirmRegisterController@DenyUser'])->middleware(['auth'])->middleware('can:authorization');
+Route::get('/productlist',['as'=>'PropertyList','uses'=>'PropertyListController@listProduct'])->middleware(['auth'])->middleware('can:authorization');
+Route::get('/property',['as' => 'Property','uses' => 'PropertyController@index'])->middleware(['auth'])->middleware('can:authorization');
+Route::get('prodetail/{PropertyId}',['as'=>'prodetail','uses'=>'PropertyController@getPropertyDetail'])->middleware(['auth'])->middleware('can:authorization');
+Route::post('/prodetail/update', ['as'=>'update_property', 'uses'=>'PropertyController@update'])->middleware(['auth'])->middleware('can:authorization');
+Route::get('/owner',['as'=>'owner','uses'=>'OwnerController@ownerlist'])->middleware(['auth'])->middleware('can:authorization');
+Route::get('addowner',['as' => 'addowner','uses' => 'OwnerController@addowner'])->middleware(['auth'])->middleware('can:authorization');
+Route::post('/insert', ['as' => 'insert', 'uses' => 'OwnerController@insertowner'])->middleware(['auth'])->middleware('can:authorization');
+Route::get('/deleteowner/{id}',['as'=>'deleteowner','uses'=>'OwnerController@deleteowner'])->middleware(['auth'])->middleware('can:authorization');
+Route::post('/owner/update', ['as'=>'update_owner', 'uses'=>'OwnerController@update'])->middleware(['auth'])->middleware('can:authorization');
 Auth::routes();
 
 Route::post('/ChiPhi/create', ['as'=>'create_ChiPhi', 'uses'=>'ChiPhi@create']);
